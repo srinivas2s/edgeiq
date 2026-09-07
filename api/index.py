@@ -6,5 +6,5 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app import app
 
-# Vercel serverless function entrypoint
-# app is exposed as the WSGI application
+# Export both 'app' and 'handler' for Vercel's Python runtime
+handler = app
