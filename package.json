@@ -1,0 +1,12 @@
+{
+  "name": "edge-iq-website",
+  "version": "1.0.0",
+  "description": "EDGE IQ Edge-AI-Powered Intelligent Retail",
+  "main": "app.py",
+  "scripts": {
+    "dev": "./venv/bin/python app.py",
+    "start": "./venv/bin/python app.py"
+  },
+  "author": "",
+  "license": "ISC"
+}

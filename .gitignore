@@ -1,0 +1,25 @@
+# Environments
+venv/
+env/
+.env
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Mac OS
+.DS_Store
+
+# Node (just in case)
+node_modules/
+npm-debug.log*
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log

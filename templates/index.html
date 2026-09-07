@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDGE IQ — Edge-AI-Powered Intelligent Retail</title>
+    <meta name="description" content="EDGE IQ is an edge-first intelligent retail management architecture integrating Edge AI, computer vision, IoT, inventory intelligence, shopper analytics, smart shopping and Edge ERP.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            white: '#FFFFFF',
+                            offWhite: '#F5F5F7',
+                            lightGray: '#E5E5EA',
+                            gray: '#86868B',
+                            graphite: '#1D1D1F',
+                            black: '#000000',
+                            blue: '#2997FF',
+                            cyan: '#32ADE6',
+                            green: '#34C759'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-brand-offWhite text-brand-graphite font-sans antialiased overflow-x-hidden selection:bg-brand-gray selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-brand-offWhite/80 backdrop-blur-md border-b border-brand-lightGray transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 font-semibold tracking-widest text-lg">
+                    EDGE IQ
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-brand-graphite/80">
+                    <a href="#overview" class="hover:text-brand-black transition-colors">Overview</a>
+                    <a href="#architecture" class="hover:text-brand-black transition-colors">Architecture</a>
+                    <a href="#intelligence" class="hover:text-brand-black transition-colors">Intelligence</a>
+                    <a href="#shopping" class="hover:text-brand-black transition-colors">Shopping</a>
+                    <a href="#operations" class="hover:text-brand-black transition-colors">Operations</a>
+                    <a href="#technology" class="hover:text-brand-black transition-colors">Technology</a>
+                    <a href="#future" class="hover:text-brand-black transition-colors">Future</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- 3. HERO SECTION -->
+            <section id="overview" class="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-32 px-4 overflow-hidden bg-brand-white hero-section">
+                <div class="text-center z-10 max-w-4xl mx-auto hero-content">
+                    <p class="text-xs md:text-sm font-semibold tracking-[0.2em] text-brand-gray mb-6 uppercase hero-eyebrow">Edge Intelligence for Physical Retail</p>
+                    <h1 class="text-6xl md:text-9xl font-bold tracking-tighter mb-4 text-brand-black hero-title">EDGE IQ</h1>
+                    <h2 class="text-2xl md:text-4xl font-light tracking-tight text-brand-graphite mb-6 hero-subtitle">Making physical retail intelligent at the edge.</h2>
+                    <p class="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto mb-12 hero-desc">An edge-first intelligent retail management architecture that transforms real-time store activity into actionable intelligence.</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 hero-buttons">
+                        <a href="#architecture" class="px-8 py-3 bg-brand-black text-white rounded-full text-sm font-medium hover:bg-brand-graphite transition-all w-full sm:w-auto">EXPLORE EDGE IQ</a>
+                        <a href="#architecture-deepdive" class="px-8 py-3 bg-brand-lightGray text-brand-black rounded-full text-sm font-medium hover:bg-gray-300 transition-all w-full sm:w-auto">VIEW ARCHITECTURE</a>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 w-full h-[50vh] flex items-end justify-center z-0 hero-visual">
+                    <div class="w-full max-w-5xl h-full border border-dashed border-brand-lightGray bg-brand-offWhite/50 rounded-t-3xl flex items-center justify-center relative overflow-hidden group">
+                        <span class="text-brand-gray text-sm tracking-widest">[ PROJECT IMAGE PLACEHOLDER: /assets/images/hero.png ]</span>
+                        <!-- Particle Effect Placeholder -->
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gray via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. OPENING STATEMENT -->
+            <section class="min-h-[150vh] bg-brand-graphite text-brand-white flex flex-col justify-center items-center py-32 px-4 relative statement-section">
+                <div class="sticky top-1/2 -translate-y-1/2 text-center max-w-5xl w-full">
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tight statement-text statement-1 opacity-100 absolute w-full left-0 transition-opacity duration-500">Retail doesn't need more data.</h2>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tight statement-text statement-2 opacity-0 absolute w-full left-0 transition-opacity duration-500">It needs intelligence.</h2>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tight statement-text statement-3 opacity-0 absolute w-full left-0 transition-opacity duration-500">At the place where decisions happen.</h2>
+                </div>
+            </section>
+
+            <!-- 5. THE PROBLEM -->
+            <section class="min-h-screen py-32 px-4 bg-brand-white problem-section overflow-hidden">
+                <div class="max-w-7xl mx-auto text-center mb-24 relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-brand-black problem-title">Physical retail is full of signals.</h2>
+                </div>
+                
+                <div class="relative h-[40vh] max-w-5xl mx-auto mb-24 signals-container flex items-center justify-center">
+                    <div class="absolute w-full flex flex-wrap justify-center gap-4 md:gap-8 signals-list">
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">CCTV</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">POS</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">Barcode</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">RFID</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">IoT</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">Customers</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">Smart Trolleys</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">Inventory</span>
+                        <span class="px-4 py-2 border border-brand-lightGray rounded-full text-brand-gray signal-item">Checkout</span>
+                    </div>
+                </div>
+
+                <div class="max-w-5xl mx-auto text-center problem-reveal">
+                    <h3 class="text-3xl md:text-5xl font-semibold tracking-tight text-brand-graphite mb-16 problem-subtitle">But fragmented systems create fragmented decisions.</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left text-brand-gray text-xl problem-list">
+                        <div class="problem-item opacity-0 transform translate-y-4">Stock-outs</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Shelf gaps</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Long checkout queues</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Inventory mismatch</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Staff inefficiency</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Connectivity dependence</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Limited personalization</div>
+                        <div class="problem-item opacity-0 transform translate-y-4">Product wastage</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. THE CORE IDEA -->
+            <section class="min-h-[200vh] bg-brand-offWhite relative core-loop-section py-32">
+                 <div class="sticky top-1/3 text-center px-4">
+                     <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 lg:gap-12 text-3xl md:text-4xl lg:text-5xl font-bold text-brand-lightGray tracking-tighter loop-words">
+                         <div class="loop-word relative">Capture.<div class="absolute -right-6 top-1/2 -translate-y-1/2 hidden md:block text-brand-lightGray arrow">→</div></div>
+                         <div class="loop-word relative">Analyze locally.<div class="absolute -right-6 top-1/2 -translate-y-1/2 hidden md:block text-brand-lightGray arrow">→</div></div>
+                         <div class="loop-word relative">Understand.<div class="absolute -right-6 top-1/2 -translate-y-1/2 hidden md:block text-brand-lightGray arrow">→</div></div>
+                         <div class="loop-word relative">Decide.<div class="absolute -right-6 top-1/2 -translate-y-1/2 hidden md:block text-brand-lightGray arrow">→</div></div>
+                         <div class="loop-word relative">Act.<div class="absolute -right-6 top-1/2 -translate-y-1/2 hidden md:block text-brand-lightGray arrow">→</div></div>
+                         <div class="loop-word">Measure.</div>
+                     </div>
+                 </div>
+            </section>
+
+
+            <!-- 7. EDGE IQ ARCHITECTURE -->
+            <section id="architecture-deepdive" class="min-h-screen py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto text-center mb-24">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-brand-black">Intelligence, from the store floor up.</h2>
+                </div>
+                
+                <div class="max-w-4xl mx-auto relative architecture-stack flex flex-col items-center gap-2 cursor-pointer">
+                    <!-- Layer 6 -->
+                    <div class="w-full bg-brand-offWhite border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="6">
+                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">06 — OPTIONAL CLOUD</p>
+                        <h4 class="text-lg font-medium">Multi-store Synchronization • Centralized Analytics</h4>
+                    </div>
+                    <!-- Layer 5 -->
+                    <div class="w-full bg-brand-lightGray/30 border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="5">
+                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">05 — RETAIL OPERATIONS</p>
+                        <h4 class="text-lg font-medium">Inventory • POS • Marketing • Customer Assistance</h4>
+                    </div>
+                    <!-- Layer 4 -->
+                    <div class="w-full bg-brand-gray/10 border border-brand-gray/30 rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="4">
+                        <p class="text-xs font-semibold text-brand-graphite tracking-widest mb-2">04 — EDGE ERP</p>
+                        <h4 class="text-lg font-medium">Inventory • Staff Operations • POS Integration • Alerts • Retail KPIs</h4>
+                    </div>
+                    <!-- Layer 3 -->
+                    <div class="w-full bg-brand-black text-white rounded-xl p-8 text-center transform scale-105 shadow-2xl z-10 layer-card" data-layer="3">
+                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">03 — EDGE AI SERVER</p>
+                        <h4 class="text-xl font-medium">Local AI Models • Computer Vision • Event Processing • Recommendations • Device Orchestration</h4>
+                    </div>
+                    <!-- Layer 2 -->
+                    <div class="w-full bg-brand-offWhite border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="2">
+                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">02 — IoT & SENSOR LAYER</p>
+                        <h4 class="text-lg font-medium">CCTV • ESP32 • Barcode • RFID • Retail Sensors</h4>
+                    </div>
+                    <!-- Layer 1 -->
+                    <div class="w-full bg-brand-white border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-offWhite transition-all layer-card" data-layer="1">
+                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">01 — CUSTOMER INTERACTION</p>
+                        <h4 class="text-lg font-medium">QR Shopping • Smart Trolley • Web</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. EDGE AI SECTION -->
+            <section id="intelligence" class="min-h-screen py-32 px-4 bg-brand-graphite text-white flex items-center justify-center">
+                <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">Intelligence happens where the data is born.</h2>
+                        <div class="space-y-4 text-brand-gray text-lg technical-labels">
+                            <p>Computer Vision</p>
+                            <p>People Detection</p>
+                            <p>Product Detection</p>
+                            <p>Shelf Monitoring</p>
+                            <p>Queue Detection</p>
+                            <p>Zone Analytics</p>
+                        </div>
+                    </div>
+                    <div class="h-[60vh] border border-brand-gray/30 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
+                         <span class="text-brand-gray text-sm tracking-widest z-10">[ PLACEHOLDER: /assets/images/edge-ai.png ]</span>
+                         <div class="absolute inset-0 flex flex-col items-center justify-center space-y-4 opacity-50 z-0">
+                             <div class="px-4 py-2 border border-brand-gray rounded text-sm">CAMERA</div>
+                             <div class="h-8 w-[1px] bg-brand-gray"></div>
+                             <div class="px-4 py-2 border border-brand-gray rounded text-sm text-brand-cyan">VISION MODEL</div>
+                             <div class="h-8 w-[1px] bg-brand-gray"></div>
+                             <div class="px-4 py-2 border border-brand-gray rounded text-sm text-brand-blue">EVENT</div>
+                             <div class="h-8 w-[1px] bg-brand-gray"></div>
+                             <div class="px-4 py-2 bg-brand-white text-brand-black font-semibold rounded text-sm">DECISION</div>
+                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. HARDWARE SECTION -->
+            <section id="technology" class="min-h-screen py-32 px-4 bg-brand-offWhite text-brand-black">
+                 <div class="max-w-7xl mx-auto text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight">Built for the edge.</h2>
+                </div>
+                <div class="max-w-6xl mx-auto relative h-[60vh] flex items-center justify-center">
+                    <div class="w-1/2 h-full border border-dashed border-brand-lightGray rounded-3xl flex items-center justify-center bg-brand-white z-10">
+                        <span class="text-brand-gray text-sm tracking-widest">[ /assets/images/hardware.png ]</span>
+                    </div>
+                    
+                    <div class="absolute inset-0 pointer-events-none flex items-center justify-center hardware-labels">
+                        <!-- Simulated lines and labels around the center -->
+                        <div class="absolute top-10 left-1/4 transform -translate-x-1/2 text-left bg-white p-4 rounded-xl shadow-sm border border-brand-lightGray hw-label opacity-0 translate-y-4">
+                            <h4 class="font-bold">Arduino UNO Q</h4>
+                            <p class="text-sm text-brand-gray">Local intelligence.</p>
+                        </div>
+                        <div class="absolute bottom-10 right-1/4 transform translate-x-1/2 text-left bg-white p-4 rounded-xl shadow-sm border border-brand-lightGray hw-label opacity-0 translate-y-4">
+                            <h4 class="font-bold">ESP32</h4>
+                            <p class="text-sm text-brand-gray">Connected sensing.</p>
+                        </div>
+                        <div class="absolute top-1/4 right-10 text-left bg-white p-4 rounded-xl shadow-sm border border-brand-lightGray hw-label opacity-0 translate-y-4">
+                            <h4 class="font-bold">CCTV Cameras</h4>
+                            <p class="text-sm text-brand-gray">Visual perception.</p>
+                        </div>
+                        <div class="absolute bottom-1/4 left-10 text-left bg-white p-4 rounded-xl shadow-sm border border-brand-lightGray hw-label opacity-0 translate-y-4">
+                            <h4 class="font-bold">Smart Trolley</h4>
+                            <p class="text-sm text-brand-gray">Connected shopping.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 10. COMPUTER VISION -->
+            <section class="min-h-screen py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight">See the store differently.</h2>
+                </div>
+                <div class="max-w-6xl mx-auto h-[60vh] border border-brand-lightGray bg-brand-offWhite rounded-3xl relative overflow-hidden flex items-center justify-center">
+                    <span class="text-brand-gray text-sm tracking-widest z-0">[ /assets/images/computer-vision.png ]</span>
+                    
+                    <!-- Bounding box animations -->
+                    <div class="absolute border-2 border-brand-blue rounded-md w-32 h-64 top-1/4 left-1/4 animate-pulse opacity-50 flex items-start justify-start p-1 cv-box">
+                        <span class="text-[10px] font-mono text-brand-blue bg-brand-blue/10 px-1">PEOPLE 98%</span>
+                    </div>
+                    <div class="absolute border-2 border-brand-green rounded-md w-16 h-16 bottom-1/4 right-1/3 animate-pulse opacity-50 flex items-start justify-start p-1 cv-box delay-100">
+                        <span class="text-[10px] font-mono text-brand-green bg-brand-green/10 px-1">PRODUCT</span>
+                    </div>
+                </div>
+                
+                <div class="max-w-5xl mx-auto mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-brand-gray font-medium text-lg cv-capabilities">
+                    <div class="opacity-0 translate-y-4">Footfall</div>
+                    <div class="opacity-0 translate-y-4">Zone Visitors</div>
+                    <div class="opacity-0 translate-y-4">Dwell Time</div>
+                    <div class="opacity-0 translate-y-4">Movement</div>
+                    <div class="opacity-0 translate-y-4">Heatmaps</div>
+                    <div class="opacity-0 translate-y-4">Promotional-Zone Visits</div>
+                    <div class="opacity-0 translate-y-4">Queue Length</div>
+                    <div class="opacity-0 translate-y-4">Checkout Occupancy</div>
+                </div>
+            </section>
+
+            <!-- 11. INVENTORY INTELLIGENCE -->
+            <section id="operations" class="min-h-screen py-32 px-4 bg-brand-graphite text-white flex flex-col justify-center">
+                <div class="max-w-7xl mx-auto w-full">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-24 text-center">Know what is on the shelf.</h2>
+                    
+                    <div class="flex flex-col items-center justify-center space-y-8 mb-24 font-mono text-brand-gray text-sm md:text-base">
+                        <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+                            <span>CCTV</span> <span class="text-brand-white">+</span>
+                            <span>BARCODE</span> <span class="text-brand-white">+</span>
+                            <span>RFID</span> <span class="text-brand-white">+</span>
+                            <span>POS</span> <span class="text-brand-white">+</span>
+                            <span>INVENTORY DATA</span>
+                        </div>
+                        <div class="text-2xl text-brand-white">↓</div>
+                        <div class="text-xl font-bold text-brand-cyan tracking-widest text-center">REAL-TIME INVENTORY INTELLIGENCE</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-center text-lg">
+                        <div>
+                            <h3 class="text-brand-cyan font-semibold text-2xl mb-4">FEFO</h3>
+                            <p class="text-brand-gray">First Expire, First Out. Automated monitoring of shelf life.</p>
+                        </div>
+                        <div class="text-brand-lightGray space-y-2">
+                            <p>Real-time stock monitoring</p>
+                            <p>Low-stock detection</p>
+                            <p>Out-of-stock detection</p>
+                            <p>Shelf availability</p>
+                        </div>
+                        <div class="text-brand-lightGray space-y-2">
+                            <p>Replenishment alerts</p>
+                            <p>Planogram compliance</p>
+                            <p>Product placement monitoring</p>
+                            <p>Physical-vs-digital validation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. SHOPPER ANALYTICS -->
+            <section class="min-h-screen py-32 px-4 bg-brand-offWhite">
+                <div class="max-w-7xl mx-auto text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-brand-black">Understand movement, not identities.</h2>
+                </div>
+                
+                <div class="max-w-5xl mx-auto h-[50vh] bg-white rounded-3xl border border-brand-lightGray relative overflow-hidden flex items-center justify-center mb-16 shadow-sm">
+                    <span class="text-brand-gray text-sm tracking-widest">[ /assets/images/store-heatmap.png ]</span>
+                    <!-- Abstract dots animation -->
+                    <div class="absolute w-3 h-3 bg-brand-blue rounded-full blur-[2px] opacity-70 animate-[ping_3s_infinite] top-1/3 left-1/4"></div>
+                    <div class="absolute w-4 h-4 bg-brand-cyan rounded-full blur-[2px] opacity-50 animate-[ping_4s_infinite] top-1/2 right-1/3"></div>
+                    <div class="absolute w-2 h-2 bg-brand-blue rounded-full blur-[1px] opacity-80 animate-[ping_2s_infinite] bottom-1/4 left-1/2"></div>
+                </div>
+                
+                <div class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 text-brand-gray font-medium tracking-wide">
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">FOOTFALL</span>
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">ZONE VISITORS</span>
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">DWELL TIME</span>
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">PEAK TRAFFIC</span>
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">MOVEMENT</span>
+                    <span class="px-4 py-2 border border-brand-lightGray rounded-full">HEATMAPS</span>
+                </div>
+            </section>
+
+
+            <!-- 13. QUEUE INTELLIGENCE -->
+            <section class="min-h-screen py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">Don't wait for the queue to become a problem.</h2>
+                        
+                        <div class="space-y-4 font-mono text-sm text-brand-gray mb-12">
+                            <div class="flex items-center gap-4"><span class="w-8 h-8 rounded-full bg-brand-lightGray flex items-center justify-center text-xs">1</span> CCTV</div>
+                            <div class="ml-4 text-brand-lightGray">↓</div>
+                            <div class="flex items-center gap-4"><span class="w-8 h-8 rounded-full bg-brand-lightGray flex items-center justify-center text-xs">2</span> CUSTOMER DETECTION</div>
+                            <div class="ml-4 text-brand-lightGray">↓</div>
+                            <div class="flex items-center gap-4"><span class="w-8 h-8 rounded-full bg-brand-lightGray flex items-center justify-center text-xs">3</span> QUEUE ESTIMATION</div>
+                            <div class="ml-4 text-brand-lightGray">↓</div>
+                            <div class="flex items-center gap-4"><span class="w-8 h-8 rounded-full bg-brand-lightGray flex items-center justify-center text-xs text-brand-black bg-brand-cyan/20">4</span> CONGESTION PREDICTION</div>
+                            <div class="ml-4 text-brand-lightGray">↓</div>
+                            <div class="flex items-center gap-4"><span class="w-8 h-8 rounded-full bg-brand-black flex items-center justify-center text-xs text-white">5</span> STAFF ACTION</div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 h-[60vh] bg-brand-offWhite rounded-3xl border border-brand-lightGray flex flex-col items-center justify-center relative shadow-inner overflow-hidden">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center space-y-4 z-10 queue-alert opacity-0 transform translate-y-4 transition-all duration-1000">
+                            <div class="bg-red-500 text-white px-6 py-2 rounded-full font-bold tracking-widest text-sm animate-pulse">STAFF ALERT</div>
+                            <div class="text-xl font-medium text-brand-black text-center px-4 bg-white/80 backdrop-blur rounded-lg py-2">OPEN ADDITIONAL BILLING COUNTER</div>
+                        </div>
+                        <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-brand-lightGray/50 to-transparent"></div>
+                        <span class="text-brand-gray text-sm tracking-widest z-0">[ QUEUE VISUALIZATION ]</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 14. SMART SHOPPING -->
+            <section id="shopping" class="min-h-screen py-32 px-4 bg-brand-graphite text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto text-center mb-24">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight">Shopping, without friction.</h2>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto h-[70vh]">
+                    <!-- QR Shopping -->
+                    <div class="flex-1 bg-brand-black rounded-3xl p-8 flex flex-col relative border border-brand-gray/30 group hover:border-brand-gray/60 transition-colors">
+                        <h3 class="text-2xl font-semibold mb-8">QR SHOPPING</h3>
+                        <div class="flex-1 border border-dashed border-brand-gray/30 rounded-xl flex items-center justify-center mb-8 relative overflow-hidden">
+                            <span class="text-brand-gray text-sm tracking-widest z-10">[ /assets/images/qr-shopping.png ]</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-mono text-brand-gray">
+                            <span>Store QR</span> <span>→</span>
+                            <span>Web Portal</span> <span>→</span>
+                            <span>Scan</span> <span>→</span>
+                            <span class="text-brand-cyan">Checkout</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Smart Trolley -->
+                    <div class="flex-1 bg-brand-black rounded-3xl p-8 flex flex-col relative border border-brand-gray/30 group hover:border-brand-gray/60 transition-colors">
+                        <h3 class="text-2xl font-semibold mb-8">SMART TROLLEY</h3>
+                        <div class="flex-1 border border-dashed border-brand-gray/30 rounded-xl flex items-center justify-center mb-8 relative overflow-hidden">
+                            <span class="text-brand-gray text-sm tracking-widest z-10">[ /assets/images/smart-trolley.png ]</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-mono text-brand-gray">
+                            <span>Product Scan</span> <span>→</span>
+                            <span>Cart Update</span> <span>→</span>
+                            <span>Bill Gen</span> <span>→</span>
+                            <span class="text-brand-blue">Payment</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 15. EDGE ERP -->
+            <section class="min-h-[150vh] py-32 px-4 bg-brand-offWhite relative">
+                <div class="sticky top-1/4 max-w-5xl mx-auto text-center z-10 mb-32">
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tight text-brand-black">AI sees. ERP decides.</h2>
+                </div>
+                
+                <div class="max-w-4xl mx-auto relative mt-[30vh]">
+                    <div class="flex flex-col items-center space-y-12 erp-flow">
+                        <div class="px-8 py-4 bg-brand-white border border-brand-lightGray rounded-xl shadow-sm text-lg font-medium">LOW STOCK DETECTED</div>
+                        <div class="h-16 w-[1px] bg-brand-gray/30"></div>
+                        <div class="px-8 py-4 bg-brand-white border border-brand-lightGray rounded-xl shadow-sm text-lg font-medium">Inventory + Sales Evaluated</div>
+                        <div class="h-16 w-[1px] bg-brand-gray/30"></div>
+                        <div class="px-8 py-4 bg-brand-black text-white rounded-xl shadow-md text-lg font-medium">Replenishment Priority</div>
+                        <div class="h-16 w-[1px] bg-brand-gray/30"></div>
+                        <div class="px-8 py-4 bg-brand-white border border-brand-lightGray rounded-xl shadow-sm text-lg font-medium">Staff Notification</div>
+                        <div class="h-16 w-[1px] bg-brand-gray/30"></div>
+                        <div class="px-8 py-4 bg-brand-white border-2 border-brand-green/50 text-brand-green rounded-xl shadow-sm text-lg font-bold tracking-wide">STOCK REPLENISHED</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 16. RECOMMENDATION ENGINE -->
+            <section class="min-h-screen py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">Right product.<br>Right context.<br>Right moment.</h2>
+                        <div class="space-y-6 text-brand-gray text-lg">
+                            <p>The recommendation engine doesn't just look at what a customer wants. It looks at what the store can actually deliver.</p>
+                            <p>Unavailable or critically low-stock products are intelligently suppressed.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 bg-brand-offWhite rounded-3xl p-8 border border-brand-lightGray font-mono text-sm">
+                        <div class="space-y-4 mb-8 text-brand-gray">
+                            <div>+ Customer Behaviour</div>
+                            <div>+ Cart Contents</div>
+                            <div>+ Product Relationships</div>
+                            <div>+ Inventory Availability</div>
+                            <div>+ Store Activity</div>
+                        </div>
+                        <div class="border-t border-brand-lightGray pt-8 space-y-4">
+                            <div class="text-center font-bold text-brand-black tracking-widest">↓ RECOMMENDATION ENGINE</div>
+                            <div class="text-center font-bold text-brand-black tracking-widest">↓ INVENTORY CHECK</div>
+                            <div class="flex justify-center gap-4 pt-4">
+                                <span class="px-4 py-2 bg-brand-green/10 text-brand-green rounded border border-brand-green/30">PROMOTE</span>
+                                <span class="px-4 py-2 bg-red-100 text-red-600 rounded border border-red-200">SUPPRESS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 17. CUSTOMER ASSISTANCE -->
+            <section class="min-h-[80vh] py-32 px-4 bg-brand-graphite text-white flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+                <div class="max-w-4xl mx-auto text-center z-10">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-16">Help before they have to ask.</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm md:text-base font-medium text-brand-lightGray">
+                        <div class="px-4 py-2 border border-brand-gray/30 rounded-full">Customer enters zone</div>
+                        <div class="hidden md:block">→</div>
+                        <div class="px-4 py-2 border border-brand-gray/30 rounded-full">High dwell time</div>
+                        <div class="hidden md:block">→</div>
+                        <div class="px-4 py-2 border border-brand-gray/30 rounded-full">Edge event</div>
+                        <div class="hidden md:block">→</div>
+                        <div class="px-4 py-2 bg-white text-brand-black rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]">Staff notification</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 18. OFFLINE-FIRST ARCHITECTURE -->
+            <section class="min-h-screen py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto text-center mb-24">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight">The store keeps thinking.</h2>
+                    <p class="text-xl text-brand-gray mt-6 max-w-2xl mx-auto">The cloud is not the center. The edge remains the primary intelligence layer.</p>
+                </div>
+                
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-brand-offWhite p-8 rounded-2xl border border-brand-lightGray flex flex-col justify-between">
+                        <h4 class="font-bold mb-8 text-lg">NORMAL CONNECTIVITY</h4>
+                        <div class="font-mono text-sm space-y-4 text-brand-gray">
+                            <div>EDGE</div>
+                            <div>→ PROCESS</div>
+                            <div>→ DECIDE</div>
+                            <div class="text-brand-blue font-semibold">→ CLOUD SYNC</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-brand-black text-white p-8 rounded-2xl shadow-xl transform md:-translate-y-4 flex flex-col justify-between border border-red-500/30 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+                        <h4 class="font-bold mb-8 text-lg">CONNECTIVITY LOSS</h4>
+                        <div class="font-mono text-sm space-y-4 text-brand-lightGray">
+                            <div>EDGE</div>
+                            <div>→ PROCESS</div>
+                            <div>→ DECIDE</div>
+                            <div class="text-white font-bold bg-white/10 inline-block px-2 py-1 rounded">→ LOCAL ACTION</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-brand-offWhite p-8 rounded-2xl border border-brand-lightGray flex flex-col justify-between">
+                        <h4 class="font-bold mb-8 text-lg">CONNECTION RESTORED</h4>
+                        <div class="font-mono text-sm space-y-4 text-brand-gray">
+                            <div>LOCAL BUFFER</div>
+                            <div class="text-brand-blue font-semibold">→ CLOUD SYNCHRONIZATION</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 19. PRIVACY -->
+            <section class="min-h-screen py-32 px-4 bg-brand-graphite text-white flex items-center justify-center relative overflow-hidden">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 w-full">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">Intelligence without unnecessary data movement.</h2>
+                        <p class="text-xl text-brand-gray mb-12">Raw visual information preferably remains local while higher-level events can be transmitted.</p>
+                        
+                        <div class="flex flex-wrap gap-4 text-sm font-medium">
+                            <span class="px-4 py-2 bg-brand-white/10 rounded-full border border-brand-gray/30">Person Count</span>
+                            <span class="px-4 py-2 bg-brand-white/10 rounded-full border border-brand-gray/30">Zone Occupancy</span>
+                            <span class="px-4 py-2 bg-brand-white/10 rounded-full border border-brand-gray/30">Queue Length</span>
+                            <span class="px-4 py-2 bg-brand-white/10 rounded-full border border-brand-gray/30">Dwell Time</span>
+                            <span class="px-4 py-2 bg-brand-white/10 rounded-full border border-brand-gray/30">Stock Conditions</span>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 flex flex-col items-center justify-center space-y-6 font-mono text-sm tracking-widest text-brand-gray privacy-flow">
+                        <div class="p-4 border border-brand-gray/30 rounded-full w-24 h-24 flex items-center justify-center bg-brand-black z-10 relative">
+                            <!-- Subtle Lock Motif -->
+                            <svg class="w-8 h-8 text-brand-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <div class="h-12 w-[1px] bg-brand-gray/30"></div>
+                        <div class="text-brand-lightGray">CAMERA</div>
+                        <div class="h-12 w-[1px] bg-brand-gray/30"></div>
+                        <div class="text-brand-white font-bold bg-white/10 px-6 py-2 rounded">LOCAL EDGE AI</div>
+                        <div class="h-12 w-[1px] bg-brand-gray/30"></div>
+                        <div class="text-brand-cyan">ANONYMOUS EVENTS</div>
+                        <div class="h-12 w-[1px] bg-brand-gray/30"></div>
+                        <div class="text-brand-blue">RETAIL INSIGHTS</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 20. COMMUNICATION ARCHITECTURE & 21. DATA ARCHITECTURE -->
+            <section class="py-32 px-4 bg-brand-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
+                    <!-- Comm Architecture -->
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight mb-12">Communication Architecture</h3>
+                        <div class="space-y-8 font-mono text-sm text-brand-gray">
+                            <div class="flex justify-between items-center border-b border-brand-lightGray pb-4">
+                                <span>ESP32</span> <span class="text-xs">→ MQTT →</span> <span class="text-brand-black font-semibold">EDGE</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-brand-lightGray pb-4">
+                                <span>POS / ERP</span> <span class="text-xs">→ REST APIs →</span> <span class="text-brand-black font-semibold">EDGE ERP</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-brand-lightGray pb-4">
+                                <span>EDGE</span> <span class="text-xs">→ WebSockets →</span> <span class="text-brand-black font-semibold">Dashboard</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-brand-lightGray pb-4">
+                                <span>EDGE</span> <span class="text-xs">→ Cloud Sync →</span> <span class="text-brand-black font-semibold">Central Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Architecture -->
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight mb-12">One intelligence layer.<br>One operational picture.</h3>
+                        <div class="bg-brand-offWhite p-8 rounded-3xl border border-brand-lightGray h-full flex flex-col justify-between">
+                            <div class="grid grid-cols-2 gap-4 text-xs font-mono text-brand-gray mb-8">
+                                <div>Product Information</div>
+                                <div>Inventory State</div>
+                                <div>Transaction Data</div>
+                                <div>AI Events</div>
+                                <div>Analytics</div>
+                                <div>System Logs</div>
+                                <div>AI Models</div>
+                                <div>Offline Event Buffers</div>
+                            </div>
+                            <div class="text-center pt-8 border-t border-brand-lightGray">
+                                <div class="text-xl font-bold tracking-widest text-brand-black">LOCAL POSTGRESQL DATABASE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 22. CLOSED LOOP -->
+            <section class="min-h-[120vh] bg-brand-black text-white flex flex-col items-center justify-center relative overflow-hidden closed-loop-section py-32">
+                <div class="z-10 max-w-4xl mx-auto text-center flex flex-col items-center space-y-8 font-bold text-5xl md:text-8xl tracking-tighter closed-loop-container relative">
+                    <div class="cl-word opacity-50 transition-opacity duration-500">SENSE</div>
+                    <div class="cl-arrow text-3xl md:text-5xl text-brand-gray/50">↓</div>
+                    <div class="cl-word opacity-50 transition-opacity duration-500">UNDERSTAND</div>
+                    <div class="cl-arrow text-3xl md:text-5xl text-brand-gray/50">↓</div>
+                    <div class="cl-word opacity-50 transition-opacity duration-500">DECIDE</div>
+                    <div class="cl-arrow text-3xl md:text-5xl text-brand-gray/50">↓</div>
+                    <div class="cl-word opacity-50 transition-opacity duration-500 text-brand-cyan">ACT</div>
+                    <div class="cl-arrow text-3xl md:text-5xl text-brand-gray/50">↓</div>
+                    <div class="cl-word opacity-50 transition-opacity duration-500">MEASURE</div>
+                    
+                    <!-- Loop visual SVG -->
+                    <svg class="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-[120%] -z-10 pointer-events-none opacity-20 hidden md:block cl-loop-svg" viewBox="0 0 500 800" fill="none">
+                        <path d="M 250,50 C 450,50 450,750 250,750 C 50,750 50,50 250,50" stroke="url(#gradient)" stroke-width="2" stroke-dasharray="10 10"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#32ADE6" />
+                                <stop offset="100%" stop-color="#2997FF" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <p class="mt-32 text-xl md:text-2xl font-light text-brand-gray tracking-wide text-center max-w-2xl px-4 cl-subtext opacity-0">From passive monitoring to operational intelligence.</p>
+            </section>
+
+            <!-- 23. TECHNICAL ADVANTAGES -->
+            <section class="py-32 px-4 bg-brand-offWhite">
+                <div class="max-w-7xl mx-auto mb-24">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-brand-black text-center mb-4">Designed for the real world.</h2>
+                    <p class="text-center text-sm font-semibold tracking-widest text-brand-gray uppercase">Expected architectural advantages</p>
+                </div>
+                
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Reduced Cloud Dependency</h4>
+                        <p class="text-brand-gray text-sm">Maintains core operations without constant internet connection.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Potentially Lower Decision Latency</h4>
+                        <p class="text-brand-gray text-sm">Processing at the edge can enable real-time local responses.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Reduced Raw-Data Transmission</h4>
+                        <p class="text-brand-gray text-sm">Only lightweight events are transmitted instead of heavy video streams.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Offline Resilience</h4>
+                        <p class="text-brand-gray text-sm">Local caching and decision-making ensure store functions during outages.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Modular Deployment</h4>
+                        <p class="text-brand-gray text-sm">Architecture designed to scale from single zones to full store rollouts.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Unified Retail Intelligence</h4>
+                        <p class="text-brand-gray text-sm">Integrates previously isolated silos (cameras, POS, RFID) into one picture.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-brand-lightGray lg:col-span-3">
+                        <h4 class="font-bold text-lg mb-4 text-brand-black">Scalability</h4>
+                        <p class="text-brand-gray text-sm max-w-2xl">Can potentially scale across multiple store locations through lightweight event synchronization.</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 24. FEASIBILITY -->
+            <section class="py-32 px-4 bg-brand-white border-t border-brand-lightGray">
+                <div class="max-w-7xl mx-auto">
+                    <h3 class="text-2xl font-bold tracking-tight mb-12 text-center">Engineering Considerations</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-sm text-brand-gray font-mono">
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-brand-black mb-6">Computer Vision</h5>
+                            <p>Camera placement</p>
+                            <p>Lighting conditions</p>
+                            <p>Occlusion handling</p>
+                            <p>Product arrangement</p>
+                            <p>Model selection</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-brand-black mb-6">RFID</h5>
+                            <p>Tag placement</p>
+                            <p>Reader configuration</p>
+                            <p>Product materials</p>
+                            <p>Store layout interference</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-brand-black mb-6">Edge AI</h5>
+                            <p>Compute limits</p>
+                            <p>Memory constraints</p>
+                            <p>Thermal management</p>
+                            <p>Power consumption</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-brand-black mb-6">Integration</h5>
+                            <p>POS APIs</p>
+                            <p>Legacy ERP syncing</p>
+                            <p>Database synchronization</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-brand-black mb-6">Smart Trolley</h5>
+                            <p>Wireless comms</p>
+                            <p>Scanning reliability</p>
+                            <p>Battery life</p>
+                            <p>User interaction</p>
+                            <p>Billing integration</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 25. FUTURE -->
+            <section id="future" class="min-h-screen py-32 px-4 bg-brand-graphite text-white overflow-hidden relative future-section">
+                <div class="max-w-7xl mx-auto text-center relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-24 max-w-4xl mx-auto">From one intelligent store to an intelligent retail network.</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto text-brand-lightGray text-lg mb-32 future-list">
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Advanced demand forecasting</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Predictive stock-out detection</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Advanced planogram intelligence</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Multi-store inventory transfer</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Online delivery integration</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Customer loyalty programs</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Personalized marketing</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Autonomous smart trolleys</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Centralized multi-store intelligence</p>
+                        <p class="opacity-0 translate-y-4 border-l border-brand-gray/30 pl-4">Advanced predictive analytics</p>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-xl md:text-2xl font-bold tracking-widest text-brand-gray network-expansion">
+                        <span class="text-white">ONE STORE</span>
+                        <span class="hidden md:block">→</span>
+                        <span class="text-white opacity-60">MULTIPLE STORES</span>
+                        <span class="hidden md:block">→</span>
+                        <span class="text-brand-cyan">RETAIL INTELLIGENCE NETWORK</span>
+                    </div>
+                </div>
+                <!-- Subtle background network visualization placeholder -->
+                <div class="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-cyan via-transparent to-transparent"></div>
+            </section>
+
+
+            <!-- 26. RESEARCH STATUS -->
+            <section class="py-32 px-4 bg-brand-offWhite text-brand-black">
+                <div class="max-w-4xl mx-auto border border-brand-lightGray rounded-3xl p-12 bg-white relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-brand-gray"></div>
+                    <h3 class="text-2xl font-bold tracking-tight mb-8">Research Status</h3>
+                    <p class="text-xl font-medium mb-12">EDGE IQ is currently a proposed-system architecture.</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 mb-12">
+                        <div class="flex-1 p-6 bg-brand-offWhite rounded-xl border border-brand-lightGray">
+                            <h5 class="text-xs font-bold tracking-widest text-brand-gray mb-2">CURRENT</h5>
+                            <p class="font-medium">Architecture + Proposed System</p>
+                        </div>
+                        <div class="flex-1 p-6 bg-white rounded-xl border border-brand-lightGray opacity-60">
+                            <h5 class="text-xs font-bold tracking-widest text-brand-gray mb-2">NEXT</h5>
+                            <p class="font-medium">Prototype Implementation</p>
+                        </div>
+                        <div class="flex-1 p-6 bg-white rounded-xl border border-brand-lightGray opacity-40">
+                            <h5 class="text-xs font-bold tracking-widest text-brand-gray mb-2">THEN</h5>
+                            <p class="font-medium">Experimental Validation</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="text-sm font-bold tracking-widest text-brand-gray mb-4">METRICS TO EVALUATE IN FUTURE</h5>
+                        <div class="flex flex-wrap gap-4 text-sm font-mono">
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">AI performance</span>
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">System latency</span>
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">Resource utilization</span>
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">Inventory detection</span>
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">Queue detection</span>
+                            <span class="px-3 py-1 bg-brand-lightGray/50 rounded">Operational benefits</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 27. FINAL SECTION -->
+            <section class="min-h-screen bg-brand-white flex flex-col items-center justify-center py-32 px-4 relative final-section">
+                <div class="text-center max-w-4xl mx-auto z-10">
+                    <div class="text-4xl md:text-7xl font-bold tracking-tight mb-16 h-32 relative flex items-center justify-center">
+                        <span class="absolute final-text-1 opacity-100 transition-opacity duration-1000">Retail is physical.</span>
+                        <span class="absolute final-text-2 opacity-0 transition-opacity duration-1000">Intelligence doesn't have to be.</span>
+                    </div>
+                    
+                    <div class="final-brand opacity-0 transform translate-y-8 transition-all duration-1000 delay-500">
+                        <h2 class="text-6xl md:text-9xl font-bold tracking-tighter mb-8 text-brand-black">EDGE IQ</h2>
+                        <p class="text-xl md:text-2xl font-light text-brand-gray tracking-widest mb-16">Sense → Understand → Decide → Act → Measure</p>
+                        
+                        <div class="mb-16">
+                            <p class="font-medium text-brand-black">Team INVictus</p>
+                            <p class="text-brand-gray">Vidyavardhaka College of Engineering</p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a href="#overview" class="px-8 py-4 bg-brand-black text-white rounded-full text-sm font-bold tracking-wider hover:bg-brand-graphite transition-all w-full sm:w-auto">EXPLORE THE ARCHITECTURE</a>
+                            <a href="#" class="px-8 py-4 bg-brand-lightGray text-brand-black rounded-full text-sm font-bold tracking-wider hover:bg-gray-300 transition-all w-full sm:w-auto">READ THE RESEARCH PAPER</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Main JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
