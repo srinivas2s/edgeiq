@@ -56,7 +56,11 @@ const heroTl = gsap.timeline({
 heroTl.to(".hero-title", { scale: 0.8, opacity: 0, y: -50 }, 0)
       .to(".hero-subtitle", { opacity: 0, y: -30 }, 0.1)
       .to(".hero-desc, .hero-buttons, .hero-eyebrow", { opacity: 0 }, 0.1)
-      .to(".hero-visual", { scale: 1.1, y: -100 }, 0);
+      .fromTo(".hero-visual", 
+          { opacity: 0, y: 120, scale: 0.95 }, 
+          { opacity: 1, y: -60, scale: 1, ease: "power1.out" }, 
+          0.1
+      );
 
 // 2. Opening Statement
 const statementTl = gsap.timeline({
