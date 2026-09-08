@@ -155,20 +155,21 @@ const heroMm = gsap.matchMedia();
 // Desktop / Tablet (>= 768px): Horizontal split
 // Edge IQ symbol glides from center to the right side of the box
 // Device box glides smoothly to the left side
+// In the hero frame, logo shrinks and moves up as the statement reveals below it
 heroMm.add("(min-width: 768px)", () => {
     const heroTl = gsap.timeline({
         scrollTrigger: {
             id: "heroPin",
             trigger: ".hero-section",
             start: "top top",
-            end: "+=4800",
+            end: "+=5200",
             scrub: 1.2,
             pin: true,
             anticipatePin: 1
         }
     });
 
-    // Phase 1 (0.00 -> 0.18):
+    // Phase 1 (0.00 -> 0.16):
     // Edge IQ symbol glides smoothly from center to the right side
     heroTl.to(".hero-content", {
         x: "24vw",
@@ -176,37 +177,68 @@ heroMm.add("(min-width: 768px)", () => {
         scale: 0.95,
         opacity: 1,
         ease: "power2.out",
-        duration: 0.18
+        duration: 0.16
     }, 0);
 
     // Box glides smoothly to the left side
     heroTl.fromTo(".hero-visual", 
         { opacity: 0, x: "0vw", y: 45, scale: 0.92 }, 
-        { opacity: 1, x: "-20vw", y: 0, scale: 1, ease: "power2.out", duration: 0.18 }, 
+        { opacity: 1, x: "-20vw", y: 0, scale: 1, ease: "power2.out", duration: 0.16 }, 
         0
     );
 
-    // Phase 2 (0.18 -> 0.28): Rest & appreciation hold - box is locked at Frame 0 on left, logo on right
-
-    // Phase 3 (0.28 -> 0.88): The box remains firmly locked while frames scrub smoothly with delay
+    // Phase 2 (0.16 -> 0.58): Device scrubs rotation frames 0 -> 57 into the hero perspective
     heroTl.to(frameSequence, {
         frame: frameCount - 1,
         ease: "none",
-        duration: 0.60,
+        duration: 0.42,
         onUpdate: function() {
             targetFrame = Math.min(frameCount - 1, Math.max(0, frameSequence.frame));
         }
-    }, 0.28);
+    }, 0.16);
 
-    // Phase 4 (0.88 -> 0.95): Final hold delay - holds the final frame locked in place before release
+    // Phase 3 (0.58 -> 0.78):
+    // In this frame, the Edge IQ logo shrinks smoothly and moves up
+    heroTl.to("#hero-logo-img", {
+        scale: 0.76,
+        y: -24,
+        ease: "power2.out",
+        duration: 0.18
+    }, 0.58);
 
-    // Phase 5 (0.95 -> 1.00): Exit transition into next section
+    // And the sentence block smoothly comes in below the logo
+    heroTl.fromTo(".hero-statement",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.18 },
+        0.58
+    );
+
+    // Subtle sequential illumination of the three statements
+    heroTl.fromTo(".hero-stmt-1",
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.10 },
+        0.58
+    );
+    heroTl.fromTo(".hero-stmt-2",
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.12 },
+        0.65
+    );
+    heroTl.fromTo(".hero-stmt-3",
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.12 },
+        0.72
+    );
+
+    // Phase 4 (0.78 -> 0.94): Hold delay - box is locked at hero frame 57, logo & statement beautifully displayed
+
+    // Phase 5 (0.94 -> 1.00): Smooth release / exit into next section
     heroTl.to([".hero-content", ".hero-visual"], {
         opacity: 0,
         y: -40,
         ease: "power1.in",
-        duration: 0.05
-    }, 0.95);
+        duration: 0.06
+    }, 0.94);
 });
 
 // Mobile (< 768px): Vertical split
@@ -217,7 +249,7 @@ heroMm.add("(max-width: 767px)", () => {
             id: "heroPin",
             trigger: ".hero-section",
             start: "top top",
-            end: "+=3800",
+            end: "+=4200",
             scrub: 1.2,
             pin: true,
             anticipatePin: 1
@@ -227,63 +259,47 @@ heroMm.add("(max-width: 767px)", () => {
     heroTl.to(".hero-content", {
         x: 0,
         y: "-26vh",
-        scale: 0.82,
+        scale: 0.85,
         opacity: 1,
         ease: "power2.out",
-        duration: 0.18
+        duration: 0.16
     }, 0);
 
     heroTl.fromTo(".hero-visual", 
         { opacity: 0, x: 0, y: 60, scale: 0.9 }, 
-        { opacity: 1, x: 0, y: "8vh", scale: 1, ease: "power2.out", duration: 0.18 }, 
+        { opacity: 1, x: 0, y: "10vh", scale: 1, ease: "power2.out", duration: 0.16 }, 
         0
     );
 
     heroTl.to(frameSequence, {
         frame: frameCount - 1,
         ease: "none",
-        duration: 0.60,
+        duration: 0.42,
         onUpdate: function() {
             targetFrame = Math.min(frameCount - 1, Math.max(0, frameSequence.frame));
         }
-    }, 0.28);
+    }, 0.16);
+
+    heroTl.to("#hero-logo-img", {
+        scale: 0.70,
+        y: -16,
+        ease: "power2.out",
+        duration: 0.18
+    }, 0.58);
+
+    heroTl.fromTo(".hero-statement",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.18 },
+        0.58
+    );
 
     heroTl.to([".hero-content", ".hero-visual"], {
         opacity: 0,
         y: -40,
         ease: "power1.in",
-        duration: 0.05
-    }, 0.95);
+        duration: 0.06
+    }, 0.94);
 });
-
-// Quick reverse scroll accelerator: When scrolling UP in the hero sequence, quickly glide back to top
-window.addEventListener('wheel', (e) => {
-    const heroST = ScrollTrigger.getById('heroPin');
-    if (!heroST) return;
-    // When user scrolls UP (deltaY < 0) within or approaching the pinned hero section
-    if (e.deltaY < 0 && window.scrollY > 0 && window.scrollY <= heroST.end + 80) {
-        const target = Math.max(0, lenis.scroll + e.deltaY * 3.2);
-        lenis.scrollTo(target, {
-            duration: 0.35,
-            immediate: false,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-        });
-    }
-}, { passive: true });
-
-// 2. Opening Statement
-const statementTl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".statement-section",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-    }
-});
-statementTl.to(".statement-1", { opacity: 0, y: -50 }, 0.2)
-           .to(".statement-2", { opacity: 1, y: 0 }, 0.3)
-           .to(".statement-2", { opacity: 0, y: -50 }, 0.6)
-           .to(".statement-3", { opacity: 1, y: 0 }, 0.7);
 
 // 3. Problem Section - Signals Converge
 gsap.from(".signal-item", {
