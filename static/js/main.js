@@ -29,17 +29,7 @@ gsap.ticker.add((time)=>{
 });
 gsap.ticker.lagSmoothing(0);
 
-// Navbar opacity on scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('bg-brand-offWhite/80', 'backdrop-blur-md');
-        navbar.classList.remove('bg-transparent');
-    } else {
-        navbar.classList.add('bg-transparent');
-        navbar.classList.remove('bg-brand-offWhite/80', 'backdrop-blur-md');
-    }
-});
+
 
 // --- Overview Frame Sequence & Lock ScrollFlow ---
 const frameCount = 58;
