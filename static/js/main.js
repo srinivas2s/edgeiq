@@ -53,7 +53,7 @@ const fallbackImg = document.getElementById('overview-fallback-img');
 
 function getFrameUrl(index) {
     const padded = String(index).padStart(2, '0');
-    return `/public/overview/frame_${padded}_delay-0.1s.gif`;
+    return `/public/overview_hd/frame_${padded}.png`;
 }
 
 function renderFrame(index) {
@@ -78,7 +78,8 @@ function renderFrame(index) {
 
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // High resolution backing store (true 2K / retina crispness)
+    const dpr = Math.max(window.devicePixelRatio || 1, 2);
     const rect = canvas.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return;
 
@@ -91,7 +92,8 @@ function renderFrame(index) {
 
     ctx.save();
     ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, rect.width, rect.height);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, rect.width, rect.height);
 
     const scale = Math.min(rect.width / img.naturalWidth, rect.height / img.naturalHeight);
     const x = (rect.width - img.naturalWidth * scale) / 2;
@@ -171,24 +173,6 @@ heroTl.to(frameSequence, {
         const targetIdx = Math.min(frameCount - 1, Math.max(0, Math.round(frameSequence.frame)));
         if (targetIdx !== currentRenderedFrame) {
             renderFrame(targetIdx);
-        }
-
-        const counter = document.getElementById('overview-frame-counter');
-        if (counter) {
-            counter.textContent = `FRAME ${String(targetIdx + 1).padStart(2, '0')} / ${frameCount}`;
-        }
-        const bar = document.getElementById('overview-progress-bar');
-        if (bar) {
-            bar.style.width = `${((targetIdx + 1) / frameCount) * 100}%`;
-        }
-
-        const hint = document.getElementById('overview-scroll-hint');
-        if (hint) {
-            if (targetIdx >= frameCount - 2) {
-                hint.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span> Sequence complete · Scroll to continue`;
-            } else {
-                hint.innerHTML = `<svg class="w-3.5 h-3.5 animate-bounce text-brand-graphite inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path></svg> Scroll to scrub overview sequence`;
-            }
         }
     }
 }, 0.15);
