@@ -301,32 +301,7 @@ heroMm.add("(max-width: 767px)", () => {
     }, 0.94);
 });
 
-// 3. Problem Section - Signals Converge
-gsap.from(".signal-item", {
-    scrollTrigger: {
-        trigger: ".signals-container",
-        start: "top 80%",
-        end: "center center",
-        scrub: 1
-    },
-    x: (i) => (Math.random() - 0.5) * 500,
-    y: (i) => (Math.random() - 0.5) * 500,
-    opacity: 0,
-    scale: 0.5,
-    stagger: 0.05
-});
 
-gsap.to(".problem-item", {
-    scrollTrigger: {
-        trigger: ".problem-reveal",
-        start: "top 80%",
-        end: "center center",
-        scrub: 1
-    },
-    opacity: 1,
-    y: 0,
-    stagger: 0.1
-});
 
 // 4. Core Idea - Loop words
 gsap.to(".loop-word", {
