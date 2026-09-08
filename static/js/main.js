@@ -142,61 +142,115 @@ requestAnimationFrame(tickFrames);
 // Animations
 
 // 1. Hero Animation & Locked Frame Sequence
-const heroTl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top top",
-        end: "+=4600", // Generous scroll runway so frames have plenty of travel distance and dwell time
-        scrub: 1.2,    // Smooth inertia
-        pin: true,
-        anticipatePin: 1
-    }
+const heroMm = gsap.matchMedia();
+
+// Desktop / Tablet (>= 768px): Horizontal split
+// Edge IQ symbol glides from center to the right side of the box
+// Device box glides smoothly to the left side
+heroMm.add("(min-width: 768px)", () => {
+    const heroTl = gsap.timeline({
+        scrollTrigger: {
+            id: "heroPin",
+            trigger: ".hero-section",
+            start: "top top",
+            end: "+=4800",
+            scrub: 1.2,
+            pin: true,
+            anticipatePin: 1
+        }
+    });
+
+    // Phase 1 (0.00 -> 0.18):
+    // Edge IQ symbol glides smoothly from center to the right side
+    heroTl.to(".hero-content", {
+        x: "24vw",
+        y: 0,
+        scale: 0.95,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.18
+    }, 0);
+
+    // Box glides smoothly to the left side
+    heroTl.fromTo(".hero-visual", 
+        { opacity: 0, x: "0vw", y: 45, scale: 0.92 }, 
+        { opacity: 1, x: "-20vw", y: 0, scale: 1, ease: "power2.out", duration: 0.18 }, 
+        0
+    );
+
+    // Phase 2 (0.18 -> 0.28): Rest & appreciation hold - box is locked at Frame 0 on left, logo on right
+
+    // Phase 3 (0.28 -> 0.88): The box remains firmly locked while frames scrub smoothly with delay
+    heroTl.to(frameSequence, {
+        frame: frameCount - 1,
+        ease: "none",
+        duration: 0.60,
+        onUpdate: function() {
+            targetFrame = Math.min(frameCount - 1, Math.max(0, frameSequence.frame));
+        }
+    }, 0.28);
+
+    // Phase 4 (0.88 -> 0.95): Final hold delay - holds the final frame locked in place before release
+
+    // Phase 5 (0.95 -> 1.00): Exit transition into next section
+    heroTl.to([".hero-content", ".hero-visual"], {
+        opacity: 0,
+        y: -40,
+        ease: "power1.in",
+        duration: 0.05
+    }, 0.95);
 });
 
-// Phase 1 (0.00 -> 0.10): Hero text fades out, visual box rises into locked position
-heroTl.to(".hero-content", {
-    opacity: 0,
-    y: -40,
-    scale: 0.95,
-    ease: "power1.inOut",
-    duration: 0.10,
-    onUpdate: function() {
-        const hc = document.querySelector('.hero-content');
-        if (hc) hc.style.pointerEvents = this.progress() > 0.5 ? 'none' : 'auto';
-    }
-}, 0);
+// Mobile (< 768px): Vertical split
+// Symbol glides UP, Box moves into center below
+heroMm.add("(max-width: 767px)", () => {
+    const heroTl = gsap.timeline({
+        scrollTrigger: {
+            id: "heroPin",
+            trigger: ".hero-section",
+            start: "top top",
+            end: "+=3800",
+            scrub: 1.2,
+            pin: true,
+            anticipatePin: 1
+        }
+    });
 
-heroTl.fromTo(".hero-visual", 
-    { opacity: 0, y: 120, scale: 0.92 }, 
-    { opacity: 1, y: 0, scale: 1, ease: "power1.out", duration: 0.10 }, 
-    0
-);
+    heroTl.to(".hero-content", {
+        x: 0,
+        y: "-26vh",
+        scale: 0.82,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.18
+    }, 0);
 
-// Phase 2 (0.10 -> 0.20): Initial hold delay - box is locked at Frame 0 so user can see it at rest
+    heroTl.fromTo(".hero-visual", 
+        { opacity: 0, x: 0, y: 60, scale: 0.9 }, 
+        { opacity: 1, x: 0, y: "8vh", scale: 1, ease: "power2.out", duration: 0.18 }, 
+        0
+    );
 
-// Phase 3 (0.20 -> 0.85): The box remains firmly locked while frames scrub smoothly with frame delay
-heroTl.to(frameSequence, {
-    frame: frameCount - 1,
-    ease: "none",
-    duration: 0.65,
-    onUpdate: function() {
-        targetFrame = Math.min(frameCount - 1, Math.max(0, frameSequence.frame));
-    }
-}, 0.20);
+    heroTl.to(frameSequence, {
+        frame: frameCount - 1,
+        ease: "none",
+        duration: 0.60,
+        onUpdate: function() {
+            targetFrame = Math.min(frameCount - 1, Math.max(0, frameSequence.frame));
+        }
+    }, 0.28);
 
-// Phase 4 (0.85 -> 0.96): Final hold delay - holds the final frame locked in place before release
-
-// Phase 5 (0.96 -> 1.00): Settle on last frame before releasing lock to next section
-heroTl.to(".hero-visual", {
-    scale: 0.98,
-    opacity: 0.95,
-    ease: "power1.in",
-    duration: 0.04
-}, 0.96);
+    heroTl.to([".hero-content", ".hero-visual"], {
+        opacity: 0,
+        y: -40,
+        ease: "power1.in",
+        duration: 0.05
+    }, 0.95);
+});
 
 // Quick reverse scroll accelerator: When scrolling UP in the hero sequence, quickly glide back to top
 window.addEventListener('wheel', (e) => {
-    const heroST = heroTl.scrollTrigger;
+    const heroST = ScrollTrigger.getById('heroPin');
     if (!heroST) return;
     // When user scrolls UP (deltaY < 0) within or approaching the pinned hero section
     if (e.deltaY < 0 && window.scrollY > 0 && window.scrollY <= heroST.end + 80) {
