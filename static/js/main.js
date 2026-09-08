@@ -21,8 +21,13 @@ requestAnimationFrame(raf)
 // Initialize GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Update ScrollTrigger on Lenis scroll
-lenis.on('scroll', ScrollTrigger.update);
+// Update ScrollTrigger on Lenis scroll & handle direction-based scrub
+lenis.on('scroll', (e) => {
+    ScrollTrigger.update();
+    if (typeof heroTl !== 'undefined' && heroTl.scrollTrigger) {
+        heroTl.scrollTrigger.scrub = e.direction === -1 ? 0.15 : 0.9;
+    }
+});
 
 gsap.ticker.add((time)=>{
   lenis.raf(time * 1000)
@@ -138,20 +143,20 @@ const heroTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".hero-section",
         start: "top top",
-        end: "+=2800", // Generous scroll distance for smooth scrubbing through 58 frames
-        scrub: 0.6,
+        end: "+=3200", // Well-balanced scroll runway
+        scrub: 0.9,    // Smooth forward inertia
         pin: true,
         anticipatePin: 1
     }
 });
 
-// Phase 1 (0 -> 0.15): Hero text fades out, visual box rises into locked position
+// Phase 1 (0.00 -> 0.12): Hero text fades out, visual box rises into locked position
 heroTl.to(".hero-content", {
     opacity: 0,
     y: -40,
     scale: 0.95,
     ease: "power1.inOut",
-    duration: 0.15,
+    duration: 0.12,
     onUpdate: function() {
         const hc = document.querySelector('.hero-content');
         if (hc) hc.style.pointerEvents = this.progress() > 0.5 ? 'none' : 'auto';
@@ -160,30 +165,49 @@ heroTl.to(".hero-content", {
 
 heroTl.fromTo(".hero-visual", 
     { opacity: 0, y: 120, scale: 0.92 }, 
-    { opacity: 1, y: 0, scale: 1, ease: "power1.out", duration: 0.15 }, 
+    { opacity: 1, y: 0, scale: 1, ease: "power1.out", duration: 0.12 }, 
     0
 );
 
-// Phase 2 (0.15 -> 0.88): The box remains firmly locked while frames scrub with scroll flow
+// Phase 2 (0.12 -> 0.22): Initial hold delay - box is locked at Frame 0 so user can see it at rest
+
+// Phase 3 (0.22 -> 0.82): The box remains firmly locked while frames scrub smoothly with scroll flow
 heroTl.to(frameSequence, {
     frame: frameCount - 1,
     ease: "none",
-    duration: 0.73,
+    duration: 0.60,
     onUpdate: function() {
         const targetIdx = Math.min(frameCount - 1, Math.max(0, Math.round(frameSequence.frame)));
         if (targetIdx !== currentRenderedFrame) {
             renderFrame(targetIdx);
         }
     }
-}, 0.15);
+}, 0.22);
 
-// Phase 3 (0.88 -> 1.00): Settle on last frame before releasing lock to next section
+// Phase 4 (0.82 -> 0.97): Final hold delay - holds the final frame locked in place before release
+
+// Phase 5 (0.97 -> 1.00): Settle on last frame before releasing lock to next section
 heroTl.to(".hero-visual", {
     scale: 0.98,
     opacity: 0.95,
     ease: "power1.in",
-    duration: 0.12
-}, 0.88);
+    duration: 0.03
+}, 0.97);
+
+// Quick reverse scroll accelerator: When scrolling UP in the hero sequence, quickly glide back to top
+window.addEventListener('wheel', (e) => {
+    const heroST = heroTl.scrollTrigger;
+    if (!heroST) return;
+    // When user scrolls UP (deltaY < 0) within or approaching the pinned hero section
+    if (e.deltaY < 0 && window.scrollY > 0 && window.scrollY <= heroST.end + 80) {
+        const target = Math.max(0, lenis.scroll + e.deltaY * 3.2);
+        lenis.scrollTo(target, {
+            duration: 0.35,
+            immediate: false,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+    }
+}, { passive: true });
 
 // 2. Opening Statement
 const statementTl = gsap.timeline({
