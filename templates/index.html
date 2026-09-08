@@ -42,7 +42,7 @@
     </script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" onerror="this.onerror=null; this.href='/public/static/css/style.css';">
 </head>
 <body class="bg-brand-offWhite text-brand-graphite font-sans antialiased overflow-x-hidden selection:bg-brand-gray selection:text-white">
 
@@ -57,7 +57,10 @@
                 <div class="hero-content absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-6">
                     <div class="pointer-events-auto flex flex-col items-center justify-center">
                         <h1 class="hero-title flex justify-center items-center">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="EDGE IQ" class="h-12 sm:h-16 md:h-20 lg:h-24 xl:h-28 w-auto object-contain max-w-[70vw] select-none">
+                            <img src="{{ url_for('static', filename='images/logo.png') }}"
+                                 onerror="if (!this._retried) { this._retried = 1; this.src = '/public/images/logo.png'; } else if (this._retried === 1) { this._retried = 2; this.src = '/logo.png'; }"
+                                 alt="EDGE IQ"
+                                 class="h-12 sm:h-16 md:h-20 lg:h-24 xl:h-28 w-auto object-contain max-w-[70vw] select-none">
                         </h1>
                     </div>
                 </div>
@@ -71,7 +74,10 @@
                             <canvas id="overview-canvas" class="w-full h-full object-contain block relative z-10"></canvas>
                             
                             <!-- Immediate fallback image while JS initializes -->
-                            <img id="overview-fallback-img" src="/public/overview_hd/frame_00.png" alt="EDGE IQ Overview" class="absolute inset-0 w-full h-full object-contain pointer-events-none z-0">
+                            <img id="overview-fallback-img" src="/public/overview_hd/frame_00.png"
+                                 onerror="this.onerror=null; this.src='/overview_hd/frame_00.png';"
+                                 alt="EDGE IQ Overview"
+                                 class="absolute inset-0 w-full h-full object-contain pointer-events-none z-0">
                         </div>
                     </div>
                 </div>
@@ -803,6 +809,6 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <!-- Main JS -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" onerror="this.onerror=null; this.src='/public/static/js/main.js';"></script>
 </body>
 </html>
