@@ -303,18 +303,7 @@ heroMm.add("(max-width: 767px)", () => {
 
 
 
-// 4. Core Idea - Loop words
-gsap.to(".loop-word", {
-    scrollTrigger: {
-        trigger: ".core-loop-section",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        pin: true
-    },
-    color: "#1D1D1F",
-    stagger: 0.2
-});
+
 
 // 5. Architecture Layers
 gsap.utils.toArray(".layer-card").forEach((layer, i) => {
