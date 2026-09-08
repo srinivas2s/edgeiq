@@ -84,11 +84,17 @@
                     </div>
                 </div>
                 
-                <div class="absolute bottom-0 left-0 w-full h-[45vh] md:h-[50vh] flex items-end justify-center z-0 hero-visual opacity-0 pointer-events-none translate-y-32">
-                    <div class="w-full max-w-5xl h-full border border-brand-lightGray/70 bg-gradient-to-b from-brand-white/95 via-brand-offWhite/80 to-brand-lightGray/20 rounded-t-3xl flex flex-col items-center justify-center relative overflow-hidden shadow-2xl p-8 backdrop-blur-md group">
-                        <span class="text-brand-gray text-sm tracking-widest z-10">[ PROJECT DASHBOARD IMAGE PLACEHOLDER ]</span>
-                        <!-- Ambient Radial Glow -->
-                        <div class="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/20 via-brand-cyan/10 to-transparent pointer-events-none"></div>
+                <!-- 3.1 HERO VISUAL (LOCKED SEQUENCE SHOWCASE) -->
+                <div class="hero-visual absolute inset-0 flex flex-col items-center justify-center pt-16 pb-8 px-4 sm:px-6 pointer-events-none z-20 opacity-0 translate-y-28 transition-transform">
+                    <div class="w-full max-w-4xl lg:max-w-5xl rounded-2xl md:rounded-3xl border border-brand-lightGray/70 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden relative flex flex-col pointer-events-auto">
+                        <!-- Screen / Canvas Container (16:9 Aspect Ratio) with White Background -->
+                        <div class="relative w-full aspect-video bg-white flex items-center justify-center overflow-hidden">
+                            <!-- Canvas for smooth 60fps frame rendering -->
+                            <canvas id="overview-canvas" class="w-full h-full object-contain block relative z-10"></canvas>
+                            
+                            <!-- Immediate fallback image while JS initializes -->
+                            <img id="overview-fallback-img" src="/public/overview/frame_00_delay-0.1s.gif" alt="EDGE IQ Overview" class="absolute inset-0 w-full h-full object-contain pointer-events-none z-0">
+                        </div>
                     </div>
                 </div>
             </section>

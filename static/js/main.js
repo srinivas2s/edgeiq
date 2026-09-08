@@ -41,26 +41,165 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// --- Overview Frame Sequence & Lock ScrollFlow ---
+const frameCount = 58;
+const overviewFrames = [];
+const frameSequence = { frame: 0 };
+let currentRenderedFrame = -1;
+
+const canvas = document.getElementById('overview-canvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+const fallbackImg = document.getElementById('overview-fallback-img');
+
+function getFrameUrl(index) {
+    const padded = String(index).padStart(2, '0');
+    return `/public/overview/frame_${padded}_delay-0.1s.gif`;
+}
+
+function renderFrame(index) {
+    if (!canvas || !ctx) return;
+    const idx = Math.min(frameCount - 1, Math.max(0, index));
+    currentRenderedFrame = idx;
+
+    let img = overviewFrames[idx];
+    // If target frame isn't loaded yet, pick the closest loaded frame for zero flicker
+    if (!img || !img.complete || img.naturalWidth === 0) {
+        for (let d = 1; d < frameCount; d++) {
+            if (idx - d >= 0 && overviewFrames[idx - d]?.complete && overviewFrames[idx - d].naturalWidth > 0) {
+                img = overviewFrames[idx - d];
+                break;
+            }
+            if (idx + d < frameCount && overviewFrames[idx + d]?.complete && overviewFrames[idx + d].naturalWidth > 0) {
+                img = overviewFrames[idx + d];
+                break;
+            }
+        }
+    }
+
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    const targetW = Math.round(rect.width * dpr);
+    const targetH = Math.round(rect.height * dpr);
+    if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+    }
+
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    const scale = Math.min(rect.width / img.naturalWidth, rect.height / img.naturalHeight);
+    const x = (rect.width - img.naturalWidth * scale) / 2;
+    const y = (rect.height - img.naturalHeight * scale) / 2;
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, x, y, img.naturalWidth * scale, img.naturalHeight * scale);
+    ctx.restore();
+
+    if (fallbackImg && fallbackImg.style.opacity !== '0') {
+        fallbackImg.style.opacity = '0';
+    }
+}
+
+// Preload frames in memory
+for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = getFrameUrl(i);
+    img.onload = () => {
+        if (i === 0 && currentRenderedFrame === -1) {
+            renderFrame(0);
+        }
+    };
+    overviewFrames.push(img);
+}
+
+if (overviewFrames[0] && overviewFrames[0].complete) {
+    renderFrame(0);
+}
+
+window.addEventListener('resize', () => {
+    if (currentRenderedFrame >= 0) {
+        renderFrame(currentRenderedFrame);
+    }
+});
+
 // Animations
 
-// 1. Hero Animation
+// 1. Hero Animation & Locked Frame Sequence
 const heroTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".hero-section",
         start: "top top",
-        end: "bottom top",
-        scrub: 1,
-        pin: true
+        end: "+=2800", // Generous scroll distance for smooth scrubbing through 58 frames
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1
     }
 });
-heroTl.to(".hero-title", { scale: 0.8, opacity: 0, y: -50 }, 0)
-      .to(".hero-subtitle", { opacity: 0, y: -30 }, 0.1)
-      .to(".hero-desc, .hero-buttons, .hero-eyebrow", { opacity: 0 }, 0.1)
-      .fromTo(".hero-visual", 
-          { opacity: 0, y: 120, scale: 0.95 }, 
-          { opacity: 1, y: -60, scale: 1, ease: "power1.out" }, 
-          0.1
-      );
+
+// Phase 1 (0 -> 0.15): Hero text fades out, visual box rises into locked position
+heroTl.to(".hero-content", {
+    opacity: 0,
+    y: -40,
+    scale: 0.95,
+    ease: "power1.inOut",
+    duration: 0.15,
+    onUpdate: function() {
+        const hc = document.querySelector('.hero-content');
+        if (hc) hc.style.pointerEvents = this.progress() > 0.5 ? 'none' : 'auto';
+    }
+}, 0);
+
+heroTl.fromTo(".hero-visual", 
+    { opacity: 0, y: 120, scale: 0.92 }, 
+    { opacity: 1, y: 0, scale: 1, ease: "power1.out", duration: 0.15 }, 
+    0
+);
+
+// Phase 2 (0.15 -> 0.88): The box remains firmly locked while frames scrub with scroll flow
+heroTl.to(frameSequence, {
+    frame: frameCount - 1,
+    ease: "none",
+    duration: 0.73,
+    onUpdate: function() {
+        const targetIdx = Math.min(frameCount - 1, Math.max(0, Math.round(frameSequence.frame)));
+        if (targetIdx !== currentRenderedFrame) {
+            renderFrame(targetIdx);
+        }
+
+        const counter = document.getElementById('overview-frame-counter');
+        if (counter) {
+            counter.textContent = `FRAME ${String(targetIdx + 1).padStart(2, '0')} / ${frameCount}`;
+        }
+        const bar = document.getElementById('overview-progress-bar');
+        if (bar) {
+            bar.style.width = `${((targetIdx + 1) / frameCount) * 100}%`;
+        }
+
+        const hint = document.getElementById('overview-scroll-hint');
+        if (hint) {
+            if (targetIdx >= frameCount - 2) {
+                hint.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span> Sequence complete · Scroll to continue`;
+            } else {
+                hint.innerHTML = `<svg class="w-3.5 h-3.5 animate-bounce text-brand-graphite inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path></svg> Scroll to scrub overview sequence`;
+            }
+        }
+    }
+}, 0.15);
+
+// Phase 3 (0.88 -> 1.00): Settle on last frame before releasing lock to next section
+heroTl.to(".hero-visual", {
+    scale: 0.98,
+    opacity: 0.95,
+    ease: "power1.in",
+    duration: 0.12
+}, 0.88);
 
 // 2. Opening Statement
 const statementTl = gsap.timeline({
