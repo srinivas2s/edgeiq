@@ -82,8 +82,7 @@ function renderFrame(index) {
 
     ctx.save();
     ctx.scale(dpr, dpr);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.clearRect(0, 0, rect.width, rect.height);
 
     const scale = Math.min(rect.width / img.naturalWidth, rect.height / img.naturalHeight);
     const x = (rect.width - img.naturalWidth * scale) / 2;
@@ -94,8 +93,8 @@ function renderFrame(index) {
     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, x, y, img.naturalWidth * scale, img.naturalHeight * scale);
     ctx.restore();
 
-    if (fallbackImg && fallbackImg.style.opacity !== '0') {
-        fallbackImg.style.opacity = '0';
+    if (fallbackImg) {
+        fallbackImg.style.display = 'none';
     }
 }
 
@@ -180,10 +179,17 @@ heroMm.add("(min-width: 768px)", () => {
         duration: 0.16
     }, 0);
 
+    // Box snaps to 100% solid opacity immediately upon scroll start (no translucent white veil)
+    heroTl.fromTo(".hero-visual", 
+        { opacity: 0 }, 
+        { opacity: 1, ease: "power1.in", duration: 0.02 }, 
+        0
+    );
+
     // Box glides smoothly to the left side
     heroTl.fromTo(".hero-visual", 
-        { opacity: 0, x: "0vw", y: 45, scale: 0.92 }, 
-        { opacity: 1, x: "-20vw", y: 0, scale: 1, ease: "power2.out", duration: 0.16 }, 
+        { x: "0vw", y: 35, scale: 0.92 }, 
+        { x: "-20vw", y: 0, scale: 1, ease: "power2.out", duration: 0.16 }, 
         0
     );
 
@@ -265,9 +271,16 @@ heroMm.add("(max-width: 767px)", () => {
         duration: 0.16
     }, 0);
 
+    // Box snaps to 100% solid opacity immediately upon scroll start (no translucent white veil)
     heroTl.fromTo(".hero-visual", 
-        { opacity: 0, x: 0, y: 60, scale: 0.9 }, 
-        { opacity: 1, x: 0, y: "10vh", scale: 1, ease: "power2.out", duration: 0.16 }, 
+        { opacity: 0 }, 
+        { opacity: 1, ease: "power1.in", duration: 0.02 }, 
+        0
+    );
+
+    heroTl.fromTo(".hero-visual", 
+        { x: 0, y: 50, scale: 0.9 }, 
+        { x: 0, y: "10vh", scale: 1, ease: "power2.out", duration: 0.16 }, 
         0
     );
 
