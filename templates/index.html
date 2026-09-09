@@ -103,39 +103,78 @@
 
 
             <!-- 7. EDGE IQ ARCHITECTURE -->
-            <section id="architecture-deepdive" class="min-h-screen py-32 px-4 bg-brand-white">
-
-                
-                <div class="max-w-4xl mx-auto relative architecture-stack flex flex-col items-center gap-2 cursor-pointer">
-                    <!-- Layer 6 -->
-                    <div class="w-full bg-brand-offWhite border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="6">
-                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">06 — OPTIONAL CLOUD</p>
-                        <h4 class="text-lg font-medium">Multi-store Synchronization • Centralized Analytics</h4>
-                    </div>
-                    <!-- Layer 5 -->
-                    <div class="w-full bg-brand-lightGray/30 border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="5">
-                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">05 — RETAIL OPERATIONS</p>
-                        <h4 class="text-lg font-medium">Inventory • POS • Marketing • Customer Assistance</h4>
-                    </div>
-                    <!-- Layer 4 -->
-                    <div class="w-full bg-brand-gray/10 border border-brand-gray/30 rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="4">
-                        <p class="text-xs font-semibold text-brand-graphite tracking-widest mb-2">04 — EDGE ERP</p>
-                        <h4 class="text-lg font-medium">Inventory • Staff Operations • POS Integration • Alerts • Retail KPIs</h4>
-                    </div>
-                    <!-- Layer 3 -->
-                    <div class="w-full bg-brand-black text-white rounded-xl p-8 text-center transform scale-105 shadow-2xl z-10 layer-card" data-layer="3">
-                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">03 — EDGE AI SERVER</p>
-                        <h4 class="text-xl font-medium">Local AI Models • Computer Vision • Event Processing • Recommendations • Device Orchestration</h4>
-                    </div>
-                    <!-- Layer 2 -->
-                    <div class="w-full bg-brand-offWhite border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-white transition-all layer-card" data-layer="2">
-                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">02 — IoT & SENSOR LAYER</p>
-                        <h4 class="text-lg font-medium">CCTV • ESP32 • Barcode • RFID • Retail Sensors</h4>
-                    </div>
+            <section id="architecture-deepdive" class="min-h-screen py-24 sm:py-32 px-4 bg-brand-white flex flex-col items-center justify-center">
+                <div class="max-w-4xl w-full mx-auto relative architecture-stack flex flex-col items-center gap-3 sm:gap-4">
                     <!-- Layer 1 -->
-                    <div class="w-full bg-brand-white border border-brand-lightGray rounded-xl p-6 text-center hover:bg-brand-offWhite transition-all layer-card" data-layer="1">
-                        <p class="text-xs font-semibold text-brand-gray tracking-widest mb-2">01 — CUSTOMER INTERACTION</p>
-                        <h4 class="text-lg font-medium">QR Shopping • Smart Trolley • Web</h4>
+                    <div class="w-full layer-card" data-layer="1">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                01 — CUSTOMER INTERACTION
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                QR Shopping • Smart Trolley • Web
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Layer 2 -->
+                    <div class="w-full layer-card" data-layer="2">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                02 — IoT & SENSOR LAYER
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                CCTV • ESP32 • Barcode • RFID • Retail Sensors
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3 -->
+                    <div class="w-full layer-card" data-layer="3">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                03 — EDGE AI SERVER
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                Local AI Models • Computer Vision • Event Processing • Recommendations • Device Orchestration
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Layer 4 -->
+                    <div class="w-full layer-card" data-layer="4">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                04 — EDGE ERP
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                Inventory • Staff Operations • POS Integration • Alerts • Retail KPIs
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Layer 5 -->
+                    <div class="w-full layer-card" data-layer="5">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                05 — RETAIL OPERATIONS
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                Inventory • POS • Marketing • Customer Assistance
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Layer 6 -->
+                    <div class="w-full layer-card" data-layer="6">
+                        <div class="group w-full bg-[#F5F5F7] hover:bg-[#1D1D1F] border border-[#E5E5EA] hover:border-[#1D1D1F] rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl cursor-pointer">
+                            <h4 class="text-base sm:text-lg font-bold tracking-tight text-brand-graphite group-hover:text-white transition-colors duration-200">
+                                06 — OPTIONAL CLOUD
+                            </h4>
+                            <p class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 text-sm text-brand-gray group-hover:text-brand-lightGray transition-all duration-300 ease-out font-medium">
+                                Multi-store Synchronization • Centralized Analytics
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>

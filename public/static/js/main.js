@@ -314,9 +314,9 @@ gsap.utils.toArray(".layer-card").forEach((layer, i) => {
             end: "center center",
             scrub: 1
         },
-        y: 50 * (6-i),
+        y: 30 * (i + 1),
         opacity: 0,
-        scale: 0.9,
+        scale: 0.95,
     });
 });
 
