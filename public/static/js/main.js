@@ -346,18 +346,7 @@ gsap.from(".technical-labels p", {
     stagger: 0.1
 });
 
-// 7. Hardware Labels
-gsap.to(".hw-label", {
-    scrollTrigger: {
-        trigger: ".hardware-labels",
-        start: "top 60%",
-        end: "center center",
-        scrub: 1
-    },
-    opacity: 1,
-    y: 0,
-    stagger: 0.2
-});
+
 
 // 8. CV Capabilities
 gsap.to(".cv-capabilities div", {
@@ -373,17 +362,6 @@ gsap.to(".cv-capabilities div", {
 });
 
 
-// 9. Queue Alert
-gsap.to(".queue-alert", {
-    scrollTrigger: {
-        trigger: ".queue-alert",
-        start: "top 60%",
-        end: "center center",
-        scrub: 1
-    },
-    opacity: 1,
-    y: 0
-});
 
 // 10. ERP Flow
 gsap.from(".erp-flow > div", {
