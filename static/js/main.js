@@ -346,9 +346,31 @@ gsap.from(".technical-labels p", {
     stagger: 0.1
 });
 
+// 6.1 Edge AI - Pipeline Flow Scroll Motion
+const pipelineTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".pipeline-flow",
+        start: "top 85%",
+        end: "center 45%",
+        scrub: 1
+    }
+});
 
+pipelineTl.from(".pipeline-step", {
+    y: 35,
+    opacity: 0,
+    scale: 0.93,
+    stagger: 0.15,
+    ease: "power2.out"
+}, 0);
 
-// 8. CV Capabilities
+pipelineTl.from(".pipeline-line", {
+    scaleY: 0,
+    opacity: 0,
+    transformOrigin: "top center",
+    stagger: 0.15,
+    ease: "power2.out"
+}, 0.06);
 gsap.to(".cv-capabilities div", {
     scrollTrigger: {
         trigger: ".cv-capabilities",
