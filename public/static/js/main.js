@@ -357,20 +357,20 @@ const pipelineTl = gsap.timeline({
 });
 
 pipelineTl.from(".pipeline-step", {
-    y: 35,
+    y: 30,
     opacity: 0,
-    scale: 0.93,
-    stagger: 0.15,
+    scale: 0.94,
+    stagger: 0.16,
     ease: "power2.out"
 }, 0);
 
-pipelineTl.from(".pipeline-line", {
+pipelineTl.from(".pipeline-connector", {
     scaleY: 0,
     opacity: 0,
     transformOrigin: "top center",
-    stagger: 0.15,
+    stagger: 0.16,
     ease: "power2.out"
-}, 0.06);
+}, 0.08);
 gsap.to(".cv-capabilities div", {
     scrollTrigger: {
         trigger: ".cv-capabilities",
